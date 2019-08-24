@@ -1,4 +1,11 @@
 .vscode
 *.out
 .git
-blackjack.out
+*.out
+Doxyfile
+html
+latex
+build
+CMakeFiles
+CmakeCache.txt
+cmake_install.cmake

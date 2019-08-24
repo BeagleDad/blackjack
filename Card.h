@@ -4,11 +4,8 @@
 #include <iostream>
 #include <vector>
 
-constexpr int ACE = 1;
-constexpr int JACK = 11;
-constexpr int QUEEN = 12;
-constexpr int KING = 13;
-
+const std::string cardFaces[14] = {
+    "Joker", "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 /**
  * @brief Class that defines the properties of a card
  * 
@@ -33,11 +30,14 @@ public:
      * @brief Strings used to print suit values.
      * 
      */
-    std::string SuitString[4] = {
-        "DIAMONDS",
-        "CLUBS",
-        "HEARTS",
-        "SPADES"};
+    // std::string SuitString[4] = {
+    //     "DIAMONDS",
+    //     "CLUBS",
+    //     "HEARTS",
+    //     "SPADES"};
+
+    // const std::string cardFaces[13] = {
+    //     "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
 
     /**
      * @brief Construct a new Card object
@@ -45,21 +45,21 @@ public:
      * @param value 
      * @param suit 
      */
-    Card(int value, Suit suit)
-        : value_(value), suit_(suit) {}
+    Card(int value, std::string suit)
+        : rank(value), suit_(suit) {}
 
     friend std::ostream &operator<<(std::ostream &os, Card const &tc)
     {
-        return os << tc.value_ << " of " << tc.SuitString[tc.suit_];
+        return os << tc.rank << " - " << cardFaces[tc.rank] << " of " << tc.suit_;
     }
 
-private:
+public:
     /**
      * @brief the cards value
      * 
      */
-    int value_;
-    Suit suit_;
+    int rank;
+    std::string suit_;
 };
 
 #endif // !CARD_H

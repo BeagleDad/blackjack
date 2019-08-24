@@ -8,9 +8,11 @@
 class CardGame
 {
 public:
-    virtual void displayHand(std::vector<Card> &hand) = 0;
+    virtual void newGame() = 0;
+    //virtual void displayHand(std::vector<Card> &hand) = 0;
     virtual void deal() = 0;
     virtual void clearHands() = 0;
+    virtual ~CardGame(){};
 
 protected:
     Deck gameDeck;

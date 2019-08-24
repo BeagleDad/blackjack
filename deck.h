@@ -20,10 +20,20 @@ class Deck
 public:
     Deck();
     void createDeck();
-    Card dealCard();
+    Card &dealCard();
 
     void shuffleDeck();
     void displayDeck();
+
+    /**
+     * @brief Strings used to print suit values.
+     * 
+     */
+    std::string SuitString[4] = {
+        "DIAMONDS",
+        "CLUBS",
+        "HEARTS",
+        "SPADES"};
 
 private:
     std::vector<Card> cards;

@@ -1,6 +1,23 @@
 #include <algorithm>
 #include <random>
 #include "deck.h"
+enum Rank
+{
+    Joker = 0,
+    Ace = 1,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Jack,
+    Queen,
+    King
+};
 
 Deck::Deck()
 {
@@ -8,18 +25,21 @@ Deck::Deck()
 }
 void Deck::createDeck()
 {
+    // clear deck first!
+    cards.clear();
     for (int j = Card::DIAMONDS; j < Card::SUIT_COUNT; j++)
     {
-        for (int i = 0; i < KING; i++)
+        for (int i = Ace; i <= King; i++)
         {
-            Card card(i + 1, (Card::Suit)j);
+            Card card(i, SuitString[j]);
             cards.push_back(card);
         }
     }
 }
-Card Deck::dealCard()
+Card &Deck::dealCard()
 {
-    Card temp = cards.back();
+    //if (!cards.empty) todo: if wanted
+    Card &temp = cards.back();
     cards.pop_back();
     return temp;
 }
@@ -40,7 +60,13 @@ Card Deck::dealCard()
 //     std::cout << "\n Dealer's hand" << std::endl;
 //     displayHand(dealersHand);
 // }
-
+void Deck::displayDeck()
+{
+    for (auto card : cards)
+    {
+        std::cout << card << std::endl;
+    }
+}
 void Deck::shuffleDeck()
 {
     std::random_device rd;

@@ -17,11 +17,8 @@ void Menu::displayMenu()
     }
     std::cout << std::endl;
     std::cout << "Enter selection: ";
-    while (1)
-    {
-        userInput();
-        displayMenu();
-    }
+
+    userInput();
 }
 
 int Menu::userInput()

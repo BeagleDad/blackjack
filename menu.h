@@ -17,7 +17,7 @@ class Menu
 {
 public:
     Menu(const std::string &title)
-        : title_(title), itemCount(0) {}
+        : itemCount(0), title_(title) {}
 
     void addMenuItem(const std::string &text, MenuFunction menuFunction);
     void displayMenu();

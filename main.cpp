@@ -7,27 +7,51 @@
 #include "deck.h"
 #include "CardGame.h"
 #include "Blackjack.h"
-// Create ourDeck of cards
-//DeckOfCards ourDeck;
+
+/*
+*  Using member function as function pointer (hack)
+*  Because a member function is meaningless without an object to invoke it on,
+*  you can’t do this directly.
+*  As a patch for existing software, use a top-level (non-member) function as a
+*  wrapper which takes an object obtained through some other technique.
+*/
+Blackjack bj;
+
+void bj_deal_wrapper()
+{
+    bj.deal();
+    bj.displayHands();
+}
+
+void bj_newgame_wrapper()
+{
+    bj.newGame();
+}
+
+void bj_hit_wrapper()
+{
+    bj.hit();
+    bj.displayHands();
+}
+void bj_stand_wrapper()
+{
+    bj.stand();
+}
 
 const std::string title("Blackjack");
-
+void newGame() { std::cout << "New Game\n"; }
 int main()
 {
-
-    CardGame *game = new Blackjack();
-
     Menu menu(title);
 
-    menu.addMenuItem("New Game", game->clearHands);
-    // menuI mm1);
-    // MenuItem mm2 = {"Deal", deal};
-    // menuItems.emplace(2, mm2);
-    // MenuItem mm3 = {"Hit", hit};
-    // menuItems.emplace(3, mm3);
-    // MenuItem mm4 = {"Display Deck", displayDeck};
-    // menuItems.emplace(4, mm4);
+    menu.addMenuItem("Deal", bj_deal_wrapper);
+    menu.addMenuItem("Hit me", bj_hit_wrapper);
+    menu.addMenuItem("Stand", bj_stand_wrapper);
+    menu.addMenuItem("New Game", bj_newgame_wrapper);
 
-    menu.displayMenu();
+    while (1)
+    {
+        menu.displayMenu();
+    }
     return 0;
 }
